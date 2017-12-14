@@ -10,6 +10,7 @@
     <!-- 生成远程服务代理，可以像使用本地bean一样使用demoService -->
     <dubbo:reference id="demoService" interface="com.dubbo.hcw.service.DemoService"/>
 
+    <!--  引用服务配置，用于创建一个远程服务代理，一个引用可以指向多个注册中心。 -->
     <dubbo:reference id="testService" interface="com.dubbo.hcw.service.TestService"/>
 
 </beans>

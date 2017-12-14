@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * Copyright (C), 2017，jumore Tec.
@@ -43,9 +44,19 @@ public class LoginController {
      */
     @RequestMapping(value = "/login")
     @ResponseBody
-    public String login(HttpServletRequest request) {
+    public String login(HttpServletRequest request) throws Exception {
 
-        String s = userService.dubboTest();
+        User user = new User();
+        for (int i = 0; i < 100; i++) {
+            user.setCreateTime(new Date());
+            user.setUserName("dubbo" + i);
+            user.setPassword(MD5Util.getMD5("dubbo"+i));
+            user.setMobile("177103638"+i);
+            user.setRealName("dubbo"+i);
+            userService.insert(user);
+        }
+
+            String s = userService.dubboTest();
 
         logger.info("Dubbo服务调用结果：-------" + s);
         return "Dubbo服务调用结果：-------" + s;
